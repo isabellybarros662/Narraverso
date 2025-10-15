@@ -1,0 +1,1293 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box; /* Inclui bordas no cálculo de dimensões */
+    font-family: 'Playfair Display', sans-serif;
+}
+
+body {
+    background-image: url('../imagens/fundo_cadastro.png'); /* Caminho relativo */
+}
+
+
+header {
+    background-color: #910910;
+    box-shadow: 0px 3px 10px rgba(145, 9, 16, 0.7);
+    height: 80px;
+}
+
+
+.nav-bar-principal {
+    display: flex;
+    position: relative;
+    justify-content: space-between; /* Distribui os elementos entre esquerda e direita */
+    align-items: center;
+    padding: 1.5rem 4rem; /* Reduzi o padding para evitar que os ícones fiquem fora da tela */
+    flex-wrap: wrap; /* Garante que os itens se ajustem conforme o tamanho da tela */
+}
+
+/* Menu lateral */
+.nav-list-menu {
+    display: none;
+    position: absolute;
+    top: 5rem; /* Distância do topo */
+    right: 0; /* Alinha o menu à direita */
+    background-color: #910910;
+    color: #F9F7EF;
+    align-items: flex-start; /* Alinha os itens à esquerda dentro do menu */
+    transition: right 0.3s ease; /* Animação suave ao abrir/fechar */
+    z-index: 10000;
+    padding: 1rem;
+    width: 100%; /* A largura será ajustada toda */
+    justify-content: center; /* Centraliza horizontalmente o conteúdo */
+}
+
+/* Menu visível */
+.nav-list-menu.active {
+    display: flex; /* Quando ativo, o menu se torna visível */
+    right: 0; /* Quando ativo, o menu entra da direita */
+}
+
+/* Ajuste no botão de menu */
+.nav-list-icone-menu {
+    display: flex;
+    justify-content: flex-end; /* Alinha o ícone à direita */
+    position: relative; /* Necessário para posicionar o filtro em relação ao login */
+    top: -0.5rem;
+    left:-4rem; /* Alinha o menu a partir da borda esquerda da tela */
+    cursor: pointer;
+    z-index: 1000;
+}
+
+/* Links dentro do menu */
+.nav-list-menu a {
+    display: flex;
+    width: auto; /* Não ocupa a largura inteira */
+    padding: 0.5rem;
+    text-decoration: none;
+    color: #E8D1A3;
+    transition: background 0.3s ease;
+    justify-content: flex-start; /* Garante que o texto esteja à esquerda */
+}
+
+.nav-list-menu .nav-item {
+    padding-top: 0.5rem;
+}
+
+/* Adicionando espaçamento entre os itens do menu */
+.nav-list-menu ul {
+    display: flex;
+    justify-content: center; /* Centraliza os itens no menu */
+    flex-wrap: wrap; /* Permite que os itens quebrem para novas linhas se necessário */
+    max-width: 100%; /* Garante que o menu não ultrapasse os limites da tela */
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+
+
+
+.nav-list-menu .nav-item {
+    padding-top: 0.5rem;
+}
+
+
+
+/* Ajuste nos itens dentro do menu */
+.nav-item {
+    margin-bottom: 1rem; /* Espaçamento entre os itens */
+    margin: 0 2rem;
+}
+
+
+
+
+.nav-list-sino {
+    display: flex; /* Alinha os ícones horizontalmente */
+    justify-content: flex-end; /* Login à direita */
+    flex-wrap: wrap; /* Garante ajuste para telas menores */
+    position: absolute;
+    top: 0.9rem;
+    right: 7rem;
+    z-index: 100; /* Ajuste o valor conforme necessário */
+}
+
+
+.nav-list-login {
+    display: flex; /* Alinha os ícones horizontalmente */
+    flex: 1; /* Permite que esses elementos ocupem espaço proporcional */
+    justify-content: flex-end; /* Login à direita */
+    flex-wrap: wrap; /* Garante ajuste para telas menores */
+    position: relative; /* Necessário para posicionar o filtro em relação ao login */
+    top: -5.5rem;
+}
+
+
+.nav-list-menu ul,
+.nav-list-logo ul,
+.nav-list-sino ul,
+.nav-list-login ul,
+.nav-list-icone-menu ul,
+.nav-list-filtro ul {
+    display: flex;
+    list-style: none; /* Remove marcadores da lista */
+    margin: 0;
+    padding: 0;
+}
+
+
+
+
+.nav-list-logo {
+    display: flex;
+    justify-content: center;
+    position: absolute; /* Centraliza no container pai */
+    left: 50%; /* Centraliza horizontalmente */
+    transform: translateX(-50%); /* Ajusta para o meio */
+    top: 1rem;
+}
+
+
+.nav-list-filtro {
+    display: flex;
+    justify-content: flex-end; /* Alinha o filtro à direita */
+    align-items: center;
+    padding: 0rem 2rem; /* Ajuste para melhor centralização */
+    top: -4rem;
+    position: relative;
+    margin-left: auto; /* Empurra o elemento para a direita */
+    
+}
+
+
+
+.nav-link {
+    text-decoration: none;
+    font-size: 1.1rem;
+    color: #E8D1A3;
+    font-weight: 100;
+    letter-spacing: 0.05em; /* Adiciona espaçamento entre as letras */
+    margin: 0rem;
+    display: flex; /* Alinha a imagem e o texto lado a lado */
+    align-items: center; /* Alinha o texto e a imagem verticalmente */
+}
+
+.nav-link img {
+    max-width: 50px;
+    width: auto;
+    height: auto;
+    transition: transform 0.3s ease; /* Efeito visual ao interagir */
+    margin-right: 0.5rem; /* Adiciona espaçamento à direita da imagem */
+}
+
+.nav-link img:hover {
+    transform: scale(1.1); /* Efeito de leve aumento no hover */
+}
+
+
+.nav-link-sino img {
+    max-width: 48px;
+    width: auto;
+    height: auto;
+    transition: transform 0.3s ease; /* Efeito visual ao interagir */
+}
+
+.nav-link-sino img:hover {
+    transform: scale(1.1); /* Efeito de leve aumento no hover */
+}
+
+.nav-link-login img {
+    max-width: 55px;
+    width: auto;
+    height: auto;
+    transition: transform 0.3s ease; /* Efeito visual ao interagir */
+}
+
+.nav-link-login img:hover {
+    transform: scale(1.1); /* Efeito de leve aumento no hover */
+}
+
+
+.nav-link-filtro img {
+    max-width: 60px;
+    width: auto;
+    height: auto;
+    transition: transform 0.3s ease; /* Efeito visual ao interagir */
+}
+
+.nav-link-filtro img:hover {
+    transform: scale(1.1); /* Efeito de leve aumento no hover */
+}
+
+
+.nav-link-casa {
+    text-decoration: none;
+    font-size: 1rem;
+    color: #E8D1A3;
+    font-weight: 100;
+    letter-spacing: 0.05em; /* Adiciona espaçamento entre as letras */
+    margin: 0rem;
+    display: flex; /* Alinha a imagem e o texto lado a lado */
+    align-items: center; /* Alinha o texto e a imagem verticalmente */
+    gap: 0.5rem; /* Espaçamento entre a imagem e o texto */
+}
+
+.nav-link-casa img {
+    max-width: 59px;
+    width: auto;
+    height: auto;
+    transition: transform 0.3s ease; /* Efeito visual ao interagir */
+}
+
+.nav-link-casa img:hover {
+    transform: scale(1.1); /* Efeito de leve aumento no hover */
+}
+
+.nav-link-sair {
+    text-decoration: none;
+    font-size: 1rem;
+    color: #E8D1A3;
+    font-weight: 100;
+    letter-spacing: 0.05em; /* Adiciona espaçamento entre as letras */
+    margin: 0rem;
+    display: flex; /* Alinha a imagem e o texto lado a lado */
+    align-items: center; /* Alinha o texto e a imagem verticalmente */
+    gap: 0.5rem; /* Espaçamento entre a imagem e o texto */
+}
+
+.nav-link-sair img {
+    max-width: 48px;
+    width: auto;
+    height: auto;
+    transition: transform 0.3s ease; /* Efeito visual ao interagir */
+}
+
+.nav-link-sair img:hover {
+    transform: scale(1.1); /* Efeito de leve aumento no hover */
+}
+
+
+
+
+.nav-link-text-narraverso img {
+    max-width: 220px;
+    height: auto;
+}
+
+
+
+
+.center {
+    text-align: center;
+    margin-top: 5rem;
+}
+
+
+
+
+/*parte do login e cadastro de pessoa*/
+
+
+.aVoltar {
+    color: #F9F7EF;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none; /* Remove o sublinhado padrão */
+    display: block; /* Faz o link se comportar como um bloco */
+    margin: 0 auto; /* Centraliza o link horizontalmente */
+    width: max-content; /* Ajusta o link ao conteúdo */
+}
+
+.aVoltar:hover {
+    text-decoration: underline; /* Adiciona sublinhado quando o link for hover */
+}
+
+
+.google-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.google-button button {
+    display: flex; /* adicionado */
+    align-items: center; /* centraliza verticalmente */
+    justify-content: center; /* centraliza horizontalmente */
+    gap: 8px; /* espaço entre o logo e o texto */
+    border: none;
+    padding: 0.5rem 0.8rem;
+    background-color: #ffffff; 
+    border: 1px solid #F9F7EF;
+    border-radius: 1.5rem;
+    cursor: pointer;
+    margin: 0rem auto;
+    margin-top: 0.4rem;
+    margin-bottom: -0.6rem;
+    transition: transform ease 0.3s;
+}
+
+
+.google-button img {
+    display: relative;
+    width: 23px;
+    height: 23px;
+    border-radius: 50%;
+    border: none;
+    object-fit: cover;
+    margin: 0 auto; 
+}
+
+.login-button button {
+    border:  none;
+    background-color: #818D14;
+    padding: 0.5rem 0.8rem; /* Espaçamento interno do botão */
+    border: 1px solid #F9F7EF;
+    border-radius: 1.5rem;
+    cursor: pointer;
+    margin: 0.5rem; /* Adiciona espaçamento ao redor do botão */
+    transition: transform ease 0.3s;
+    text-decoration: none;
+    color: #F9F7EF;
+    font-weight: 500;
+    font-size: 1.1rem;
+}
+
+.login-button {
+    display: flex; /* Habilita Flexbox */
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+    flex-wrap: wrap; /* Permite que os botões se ajustem em múltiplas linhas, se necessário */
+}
+
+.login-button button:hover {
+    transform: scale(1.1); /* Efeito de leve aumento no hover */
+}
+
+
+
+.login-button input {
+    border:  none;
+    background-color: #818D14;
+    padding: 0.5rem 0.8rem; /* Espaçamento interno do botão */
+    border: 1px solid #F9F7EF;
+    border-radius: 1.5rem;
+    cursor: pointer;
+    margin: 0.5rem; /* Adiciona espaçamento ao redor do botão */
+    transition: transform ease 0.3s;
+    text-decoration: none;
+    color: #F9F7EF;
+    font-weight: 500;
+    font-size: 1.1rem;
+}
+
+.login-button input:hover {
+    transform: scale(1.1); /* Efeito de leve aumento no hover */
+}
+
+.logar-cad {
+    display: none;
+}
+
+.logar-cad.open {
+    display: block;
+}
+
+.logar-cad {
+    background-color: #910910;
+    position: absolute;
+    top: 50%; /* Centraliza verticalmente */
+    left: 50%; /* Centraliza horizontalmente */
+    transform: translate(-50%, -50%); /* Ajusta para o centro */
+    align-items: center;
+    padding: 1rem 2rem;
+    border-radius: 1.5rem;
+    color: #F9F7EF;
+    z-index: 10; /* Garante que fique sobre outros elementos */
+}
+
+
+.logar-cad ul{
+    padding-bottom: 1rem;
+}
+
+.logar-cad .nav-item {
+    display: block;
+    padding-top: 1.2;
+}
+
+.logar-cad .texto-logar-cad {
+    display: block;
+    text-align: center; /* Centraliza o texto */
+    padding: 1.5rem; /* Adiciona espaçamento interno */
+    margin-bottom: 1rem; /* Espaçamento inferior */
+}
+
+.logar-cad .login-button {
+    display: block;
+    padding: 1rem 2rem;
+}
+
+
+.logar {
+    display: none;
+    background-color: #910910;
+    position: absolute;
+    top: 50%; /* Centraliza verticalmente */
+    left: 50%; /* Centraliza horizontalmente */
+    transform: translate(-50%, -50%); /* Ajusta para o centro */
+    align-items: center;
+    padding: 1rem 1rem;
+    border-radius: 1.5rem;
+    color: #F9F7EF;
+    z-index: 1000; /* Garante que fique sobre outros elementos */
+}
+
+
+.logar h3{
+    margin-bottom: 0.5rem; /* Espaçamento entre os textos */
+    text-align: center; /* Centraliza os textos */
+}
+
+.logar h5 {
+    margin-bottom: 0.5rem; /* Espaçamento entre os textos */
+}
+
+.logar input[type="text"],
+.logar input[type="password"] {
+    margin-bottom: 1rem; /* Espaçamento inferior */
+    padding: 0.5rem; /* Espaçamento interno */
+    border: 1px solid #ccc;
+    border-radius: 1.5rem;
+    width: 100%; /* Faz o input ocupar toda a largura do container */
+    max-width: 300px; /* Limita a largura máxima */
+}
+
+
+.senha-container {
+    position: relative;
+    display: flex; 
+    align-items: center; /*centraliza elementos*/
+    width: 100%;
+    max-width: 300px;
+}
+
+.senha-container input[type="password"],
+.senha-container input[type="text"]{
+    padding: 0.5rem 2.5rem 0.5rem 0.8rem; /* espaço à direita para o olho */
+    margin-bottom: 1rem; /* Espaçamento inferior */
+    padding: 0.5rem; /* Espaçamento interno */
+    border: 1px solid #ccc;
+    border-radius: 1.5rem;
+    width: 100%; /* Faz o input ocupar toda a largura do container */
+    max-width: 300px; /* Limita a largura máxima */
+
+}
+
+.olho-span {
+    position: absolute;
+    right: 0rem;
+    border-radius: 60%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    top:-8%;
+    border: none;
+
+}
+
+.olho-mostra {
+    width: 22px;
+    height: 22px;
+    opacity: 0.6;/*transparência*/
+    transition: opacity 0.2s ease; /*transição de transparÊncia*/
+}
+
+.olho-mostra:hover {
+    opacity: 1;
+}
+
+
+.esqueciSenha {
+    display: none;
+    background-color: #910910;
+    position: absolute;
+    top: 50%; /* Centraliza verticalmente */
+    left: 50%; /* Centraliza horizontalmente */
+    transform: translate(-50%, -50%); /* Ajusta para o centro */
+    align-items: center;
+    padding: 1rem 1rem;
+    border-radius: 1.5rem;
+    color: #F9F7EF;
+    z-index: 1000; /* Garante que fique sobre outros elementos */
+}
+
+
+.esqueciSenha h3{
+    margin-bottom: 0.5rem; /* Espaçamento entre os textos */
+    text-align: center; /* Centraliza os textos */
+}
+
+.esqueciSenha h5 {
+    margin-bottom: 0.5rem; /* Espaçamento entre os textos */
+}
+
+.esqueciSenha input[type="text"] {
+    margin-bottom: 1rem; /* Espaçamento inferior */
+    padding: 0.5rem; /* Espaçamento interno */
+    border: 1px solid #ccc;
+    border-radius: 1.5rem;
+    width: 250px; /* comprimento input*/
+    max-width: 300px; /* Limita a largura máxima */
+}
+
+.voltar-quem-somos button {
+    border:  none;
+    background-color: #818D14;
+    padding: 0.5rem 0.8rem; /* Espaçamento interno do botão */
+    border: 1px solid #F9F7EF;
+    border-radius: 1.5rem;
+    cursor: pointer;
+    margin: 0.5rem; /* Adiciona espaçamento ao redor do botão */
+    transition: transform ease 0.3s;
+    text-decoration: none;
+    color: #F9F7EF;
+    font-weight: 500;
+    font-size: 1.2rem;
+}
+
+.voltar-quem-somos {
+    display: flex; /* Habilita Flexbox */
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+    flex-wrap: wrap; /* Permite que os botões se ajustem em múltiplas linhas, se necessário */
+}
+
+.voltar-quem-somos button:hover {
+    transform: scale(1.1); /* Efeito de leve aumento no hover */
+}
+
+
+.open {
+    display: block;
+}
+
+
+
+
+/*--------------------------------------------Filtragem--------------------------------------------*/
+/* Fundo acinzentado semi-transparente */
+        .filtro-overlay {
+            display: none; /* Escondido por padrão */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh; /* Ocupa toda a tela */
+            background: rgba(0, 0, 0, 0.6); /* Fundo escuro semi-transparente */
+            backdrop-filter: blur(5px); /* Efeito de desfoque */
+            justify-content: center;
+            align-items: center;
+            z-index: 9999; /* Garante que o filtro fique na frente de tudo */
+        }
+
+        /* Classe que será ativada ao clicar no botão */
+        .filtro-overlay-open {
+            display: flex !important; /* Garante que fique visível */
+        }
+
+
+
+        /* Janela de filtro */
+        .filtro-container {
+            background: #F5F5DC; /*#f5f5f5*/
+            padding: 20px;
+            clip-path: inset(0 round 10px); /* Mantém o border-radius mesmo com scroll */
+            text-align: center;
+            max-width: 800px; /* Mantém o tamanho do conteúdo */
+            width: 90%; /* Responsivo */
+            max-height: 80vh; /* Permite um tamanho maior */
+            overflow-y: auto; /* Adiciona rolagem caso ultrapasse o tamanho */
+        }
+
+        /* Lista de gêneros */
+        .genero-lista {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            text-align: center;
+            padding: 2px 8px;
+        }
+
+        /* Botão de confirmação */
+        .filtro-container button {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #818D14;
+            border: 1px solid #F9F7EF;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 100px;
+            height: 50px;
+        }
+
+        .filtro-container button:hover {
+            background: #910910;
+        }
+
+
+
+        span {
+            display: inline-block;
+            padding: 8px 12px;
+            margin: 5px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            user-select: none;
+            transition: 0.3s;
+        }
+
+
+        .selecionar {
+            background-color: #C4B6B6; /* mais escuro, ainda elegante */
+            color: #910910; /* Apenas o texto fica verde */
+            font-weight: bold; /* (Opcional) Destacar o texto */
+        }
+
+        .fechar-filtro {
+            text-align: center;
+            cursor: pointer;
+            text-decoration: none; /* Remove o sublinhado padrão */
+            display: block; /* Faz o link se comportar como um bloco */
+            margin: 0 auto; /* Centraliza o link horizontalmente */
+            width: max-content; /* Ajusta o link ao conteúdo */
+        }
+
+        .fechar-filtro:hover {
+            text-decoration: underline; /* Adiciona sublinhado quando o link for hover */
+        }
+
+
+
+/*site quem somos*/
+.container-pesquisa {
+    display: flex; /* Usa flexbox para alinhar imagem e texto */
+    justify-content: center; /* Alinha conteúdo à esquerda */
+    align-items: center;
+    max-width: 50%;
+    height: 4rem;
+    margin: 1rem auto;
+    margin-top: 1rem;
+    padding: 0 1rem;
+    background: #f9f7ef;
+    border-radius: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.pesquisa-imagem {
+    display: flex;
+    text-align: left;
+    margin-top: 0.2rem;
+    margin-left: 0.1rem;
+}
+
+.pesquisa-imagem img {
+    height: 55px;
+    width: auto;
+    transition: transform 0.3s ease; /* Efeito visual ao interagir */
+}
+
+.barra-pesquisa {
+    flex: 1;
+    font-size: 1rem; 
+    border: none;
+    background: transparent;
+    outline: none; /*Quando clico e aparece uma borda que cliquei*/
+    color: #333;
+    padding: 1rem;
+    max-width: 50rem;
+    z-index: 100; /*mais alto que todos*/
+}
+
+
+
+    .container-principal-obras{
+        display: grid;
+        width: 80%;
+        height: 65vh;
+        margin: 0 auto;
+        margin-top: 2rem;
+        padding: 1rem 2rem;
+        background: #F9F7EF;
+        clip-path: inset(0 round 13px); /* Mantém o border-radius mesmo com scroll */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        overflow-y: auto; /*para ir para baixo caso necessário*/
+        justify-content: center;
+        text-align: center;
+    }
+
+    .container-obras{
+        display: grid;
+        grid-template-columns: repeat(6, 1fr); /*6 por fileira*/
+        padding: 1rem;
+        margin: 0 auto;
+        text-align: center;
+        justify-content: center;
+        gap: 20px; /* Espaço entre as obras */
+        list-style: none;
+    }
+
+    .container-obras li{
+        color: inherit; /*herda a cor do texto pai*/
+        text-decoration: none; /*tira sublinhado*/
+    }
+
+    .obras {
+        display: flex;
+        flex-direction: column;
+        margin-top: 0; 
+        text-align: center;
+        margin-top: 0;
+    }
+
+    /*Resultado do conteúdo pesquisada*/
+    .obras-image{
+        display: inline-block;
+        flex-direction: column; 
+        border: 2px dashed #910910;
+        padding: 5px;
+        border-radius: 10%;
+        width: 140px;
+        height: 220px;
+        text-align: center;
+        position: relative;
+        overflow: hidden; /* para evitar que o coração ultrapasse bordas arredondadas */
+    }
+
+    .obras-image img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /*para não perder a qualidade da imagem*/
+        border-radius: 10%; 
+        transition: transform 0.3s ease;
+    }
+
+    .obras-image img:hover {
+        transform: scale(1.1);
+    }
+
+
+    img.favorito-icone{
+        width: 30px;
+        height: 30px;
+        border-radius: 50%; /* Deixa o coração com bordas arredondadas */
+        object-fit: contain; /* Ajusta a imagem para não distorcer */
+        cursor: pointer;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 10;
+        background: transparent;
+    }
+
+
+    .pessoas {
+        display: none;
+        flex-direction: column;
+        margin-top: 0; 
+        text-align: center;
+        margin-top: 0;
+    }
+
+
+    .pessoas-image{
+        display: flex;
+        flex-direction: column; 
+        border: 2px dashed #910910;
+        padding: 5px;
+        border-radius: 50%;
+        width: 145px;
+        height: 145px;;
+        text-align: center;
+        position: relative;
+    }
+
+    .pessoas-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /*para não perder a qualidade da imagem*/
+        border-radius: 50%; 
+    }
+
+    .conteudo-nome {
+        font-size: 15px;
+    }
+
+
+    .obras-titulo {
+        grid-column: 1 / -1; /* Ocupa todas as colunas da grid*/
+        font-size: 22px;
+    }
+
+
+    .contas-titulo {
+        display: none;         /* se usar flex */
+        justify-content: center; /* centraliza horizontalmente */
+        font-size: 22px;
+    }
+
+
+
+
+    .sem_resultado{
+        display: none;
+        grid-column: 1 / -1; /* Ocupa todas as colunas da grid */
+        text-align: center;
+        font-size: 30px;
+    }
+
+
+body.dark {
+    background-image: url('../imagens/fundo_cadastro_escuro1.png');
+}
+
+body.dark .container-pesquisa {
+
+    background: #C7B78F;
+}
+
+
+ body.dark .container-pesquisa p{
+
+    color: #333;
+}
+
+
+
+
+
+/* Ajustes de responsividade */
+@media (max-width: 1600px) {
+    .container-principal-obras{
+        height: 33rem;
+        width: 85%;
+    }
+
+    .container-pesquisa {
+        height: 4.5rem;
+    }
+
+    
+    .obras-titulo {
+        font-size: 30px;
+    }
+
+    .contas-titulo {
+        font-size: 30px;
+    }
+
+    .conteudo-nome {
+        font-size: 17px;
+    }
+
+    .obras-image {
+        width: 170px;
+        height: 250px;
+    }
+
+    .pessoas-image {
+        width: 160px;
+        height: 160px;
+    }
+}
+
+
+@media (max-width: 1200px) {
+    .container-principal-obras{
+        width: 90%;
+    }
+
+    .container-pesquisa {
+        height: 4rem;
+    }
+
+    .barra-pesquisa{
+        font-size: 18px;
+    }
+
+    .obras-image{
+        width: 140px;
+        height: 210px;
+    }
+
+    .obras-titulo {
+        font-size: 25px;
+    }
+
+    .contas-titulo {
+        font-size: 25px;
+    }
+    
+
+    .conteudo-nome {
+        font-size: 13px;
+    }
+}
+
+
+
+@media (max-width: 920px) {
+    .carrossel-item img {
+        align-items: center;
+        width: 650px; /* Redução do tamanho da imagem no responsivo */
+        height: 330px; /* Redução do tamanho da imagem no responsivo */
+    }
+
+    .container-obras{
+        grid-template-columns: repeat(4, 1fr); /*6 por fileira*/
+        width: 80%;
+    }
+
+    .obras-image{
+        width: 140px;
+        height: 210px;
+        gap:13px;
+    }
+
+
+    .seta-esquerda {
+        left: 2.5rem;
+    }
+
+
+    .seta-direita {
+        right: 2.5rem;
+    }
+}
+
+
+/* Ajustes de responsividade */
+@media (max-width: 730px) {
+
+    .nav-bar-principal {
+        padding: 2rem 4rem; /* Ajuste de espaçamento */
+        display: flex; /* Certifique-se de que flexbox está aplicado */
+         gap: 1rem; /* Espaçamento fixo entre .nav-list-* */
+    }
+
+
+    .nav-list-menu {
+        width: 100%; /* Usa a largura total da tela */
+        text-align: center;
+    }
+
+
+    .nav-list-menu ul {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+
+
+    .nav-link-filtro img {
+        max-width: 45px;
+    }
+
+
+    .nav-item {
+        margin: 0 1.5rem; /*altura e esquerda ou direita*/
+    }
+
+    .nav-list-sino {
+        top: 1.6rem;
+        right: 4.5rem;
+    }
+
+    .nav-list-sino img {
+        width: 35px;
+    }
+
+    .nav-list-left,
+    .nav-list-center,
+    .nav-list-right {
+        flex-direction: flex;
+        align-items: center;
+        margin: 0.2rem -2.8rem; /*altura e esquerda ou direita*/
+    }
+
+   
+    .nav-link img {
+        width: 40px; /* Tamanho mínimo garantido */
+        max-width: 15vw; /* Reduz proporcionalmente à largura da tela */
+        height: auto; /* Mantém a proporção */
+        transition: width 0.3s ease; /* Suaviza a alteração de tamanho */
+    }
+
+
+
+    .nav-link-login img {
+        width: 50px; /* Tamanho mínimo garantido */
+        max-width: 15vw; /* Reduz proporcionalmente à largura da tela */
+        height: auto; /* Mantém a proporção */
+        transition: width 0.3s ease; /* Suaviza a alteração de tamanho */
+    }
+
+
+    .logar-cad {
+        width: 50%;  /* Ajusta para ocupar 90% da largura da tela */
+        max-width: 500px; /* Limita a largura máxima para não ficar muito grande */
+        padding: 2rem 2rem; /* Ajusta o padding para manter espaçamento adequado */
+    }
+
+
+
+    .logar-cad .login-button {
+        display: flex; /* Alinha os elementos lado a lado */
+        justify-content: space-between; /* Espaça os botões igualmente */
+        gap: 0.8rem; /* Espaço entre os botões */
+        justify-content: center; /* Centraliza os botões no eixo horizontal */
+        align-items: center; /* Centraliza no eixo vertical (se necessário) */
+    }
+ 
+
+    .logar-cad .login-button button,
+    .logar-cad .login-button input {
+        padding: 0.5rem 0.7rem; /* Ajuste intermediário de tamanho */
+        font-size: 1rem; /* Tamanho de fonte um pouco menor */
+        margin: 0; /* Remova margem para evitar espaçamentos indesejados */
+        flex: 1; /* Faz com que ambos ocupem espaço igual */
+    }
+
+
+
+    .nav-link-text-narraverso img {
+        width: 160px; /* Aumenta o tamanho da imagem */
+        max-width: 90vw; /* Ajusta para telas maiores */
+        height: auto; /* Mantém a proporção da imagem */
+        transition: width 0.3s ease, margin-top 0.3s ease; /* Suaviza a transição de tamanho e posição */
+        margin-top: 8px; /* Abaixa a imagem */
+    }
+
+
+
+    /*site quem somos*/
+    .conteudo-quem-somos {
+        margin: -30px auto;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+    }
+
+ 
+
+
+    .carrossel-item img {
+        align-items: center;
+        width: 450px; /* Redução do tamanho da imagem no responsivo */
+        height: 250px; /* Redução do tamanho da imagem no responsivo */
+    }
+
+
+
+
+
+    .container-principal-obras{
+        width: 85%;
+        min-height: 55rem;
+        margin-top: 7rem;
+        margin-bottom: 1rem;
+        padding: 1.5rem 1.5rem;
+    }
+
+    .container-obras-index{
+        gap: 13px; /* Espaço entre as obras */
+    }
+
+
+
+    .container-obras{
+        grid-template-columns: repeat(4, 1fr); /*6 por fileira*/
+        width: 80%;
+        height: 90vh;
+        margin-top: 7rem;
+        margin-bottom: 1rem;
+        gap: 13px; /* Espaço entre as obras */
+    }
+
+    .obras-image{
+        width: 120px;
+        height: 180px;
+    }
+
+
+    .seta-esquerda {
+        margin-top: 4rem;
+        width: 58px;
+        height: 53px;
+        left: 0.8rem;
+    }
+
+
+    .seta-direita {
+        margin-top: 4rem;
+        right: 0.8rem;
+        width: 58px;
+        height: 53px;
+    }
+
+
+    .conteudo-nome {
+        font-size: 13.5px;
+    }
+
+
+    .obras-titulo {
+        font-size: 18px;
+    }
+
+
+    
+}
+
+
+@media (max-width: 660px) {
+    .container-obras{
+        grid-template-columns: repeat(3, 1fr); /*6 por fileira*/
+        width: 80%;
+    }
+
+    .obras-image{
+        width: 125px;
+        height: 185px;
+    }
+
+    .seta-direita{
+        right: 0.4rem;
+    }
+
+    .seta-esquerda {
+        left: 0.4rem;
+    }
+}
+
+
+
+
+@media (max-width: 480px) {
+    .logar-cad {
+        width: 70%; /* Ajusta para ocupar 65% da largura da tela */
+        max-width: 300px; /* Limita a largura máxima */
+    }
+
+    .logar-cad .login-button {
+        display: flex; /* Alinha os botões lado a lado */
+        justify-content: space-between; /* Espaço entre os botões */
+        gap: 0.6rem; /* Espaço adicional entre os botões */
+    }
+ 
+
+    .logar-cad .login-button button,
+    .logar-cad .login-button input {
+        flex: 1; /* Faz os botões ocuparem o mesmo espaço */
+        font-size: 1rem;
+        padding: 0.5rem 0.6rem 0.5rem 0.6rem; /* Ajuste intermediário de tamanho */
+
+    } 
+
+    .logar {
+        width: 70%;
+    }
+
+    .nav-link-text-narraverso {
+        display: none;
+    }
+
+    .nav-link img {
+        width: 40px; /* Tamanho mínimo garantido */
+    }
+
+
+    .nav-list-sino {
+        top: 1.5rem;
+        right: 5rem;
+    }
+
+    .nav-list-sino img {
+        width: 35px;
+    }
+
+    .nav-link-casa img {
+        max-width: 47px;
+    }
+
+
+   .carrossel-item img {
+        width: 400px; /* Redução do tamanho da imagem no responsivo */
+        height: 200px; /* Redução do tamanho da imagem no responsivo */
+    }
+
+
+    .container-principal-obras{
+        width: 90%;
+        min-height: 48rem;
+        margin-top: 7rem;
+        margin-bottom: 1rem;
+        padding: 1.5rem 1.3rem;
+    }
+
+    .container-obras-index{
+        gap: 13px; /* Espaço entre as obras */
+    }
+
+
+
+    .container-obras{
+        width: 90%;
+        height: 65vh;
+        margin-top: 5rem;
+        margin-bottom: 1rem;
+        gap: 13px; /* Espaço entre as obras */
+    }
+
+    .obras-image{
+        width: 100px;
+        height: 150px;
+    }
+
+
+    .seta-esquerda {
+        margin-top: 3rem;
+        width: 55px;
+        height: 50px;
+        left: -0.5rem;
+    }
+
+
+    .seta-direita {
+        margin-top: 3rem;
+        right: -0.5rem;
+        width: 55px;
+        height: 50px;
+    }
+
+
+    .conteudo-nome {
+        font-size: 12px;
+    }
+
+
+    .obras-titulo {
+        font-size: 18px;
+    }
+
+
+}
+
+
+
+

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<style>
+		/* Fundo acinzentado semi-transparente */
+		.filtro-overlay {
+		    display: none;
+		    position: fixed;
+		    top: 0;
+		    left: 0;
+		    width: 100%;
+		    height: 100%;
+		    background: rgba(0, 0, 0, 0.6); /* Fundo escuro semi-transparente */
+		    backdrop-filter: blur(5px); /* Efeito de desfoque no fundo */
+		    display: flex;
+		    justify-content: center;
+		    align-items: center;
+		}
+
+		/* Janela de filtro */
+		.filtro-container {
+		    background: #f5f5f5;
+		    padding: 20px;
+		    border-radius: 10px;
+		    width: 50%;
+		    max-width: 600px;
+		    text-align: center;
+		}
+
+		/* Lista de gêneros */
+		.genero-lista {
+		    display: grid;
+		    grid-template-columns: repeat(3, 1fr);
+		    gap: 10px;
+		    text-align: left;
+		}
+
+		/* Botão de confirmação */
+		.filtro-container button {
+		    margin-top: 15px;
+		    padding: 10px;
+		    background: #ff4d4d;
+		    color: white;
+		    border: none;
+		    cursor: pointer;
+		    border-radius: 5px;
+		    width: 100%;
+		}
+
+		.filtro-container button:hover {
+		    background: #cc0000;
+		}
+
+	</style>
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+		    const filtroBotao = document.querySelector(".nav-link-filtro");
+		    const filtroModal = document.getElementById("filtroModal");
+
+		    // Função para abrir o filtro
+		    filtroBotao.addEventListener("click", function (event) {
+		        event.preventDefault();
+		        filtroModal.style.display = "flex";
+		    });
+		});
+
+		// Função para fechar o filtro
+		function fecharFiltro() {
+		    document.getElementById("filtroModal").style.display = "none";
+		}
+
+	</script>
+
+</head>
+<body>
+	<!-- Tela de Filtro -->
+<div id="filtroModal" class="filtro-overlay">
+    <div class="filtro-container">
+        <h2>Filtrar por:</h2>
+
+        <h3>Tipo:</h3>
+        <label><input type="checkbox" name="tipo" value="filme"> Filme</label>
+        <label><input type="checkbox" name="tipo" value="serie"> Série</label>
+        <label><input type="checkbox" name="tipo" value="livro"> Livro</label>
+
+        <h3>Gênero:</h3>
+        <div class="genero-lista">
+            <label><input type="checkbox" name="genero" value="acao"> Ação</label>
+            <label><input type="checkbox" name="genero" value="animacao"> Animação</label>
+            <label><input type="checkbox" name="genero" value="anime"> Anime</label>
+            <label><input type="checkbox" name="genero" value="aventura"> Aventura</label>
+            <label><input type="checkbox" name="genero" value="biografia"> Biografia</label>
+            <label><input type="checkbox" name="genero" value="comedia"> Comédia</label>
+            <label><input type="checkbox" name="genero" value="crime"> Crime</label>
+            <label><input type="checkbox" name="genero" value="documentario"> Documentário</label>
+            <label><input type="checkbox" name="genero" value="drama"> Drama</label>
+            <label><input type="checkbox" name="genero" value="fantasia"> Fantasia</label>
+            <label><input type="checkbox" name="genero" value="ficcao"> Ficção</label>
+            <label><input type="checkbox" name="genero" value="ficcao-cientifica"> Ficção Científica</label>
+            <label><input type="checkbox" name="genero" value="historico"> Histórico</label>
+            <label><input type="checkbox" name="genero" value="mistério"> Mistério</label>
+            <label><input type="checkbox" name="genero" value="musical"> Musical</label>
+            <label><input type="checkbox" name="genero" value="novela"> Novela</label>
+            <label><input type="checkbox" name="genero" value="romance"> Romance</label>
+            <label><input type="checkbox" name="genero" value="suspense"> Suspense</label>
+            <label><input type="checkbox" name="genero" value="terror"> Terror</label>
+        </div>
+
+        <button onclick="fecharFiltro()">Confirmar</button>
+    </div>
+</div>
+
+</body>
+</html>

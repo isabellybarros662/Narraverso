@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Narraverso</title>
+    <link rel="stylesheet" href="css/estiloObras.css">
+    <script src="menu.js"></script>
+</head>
+<body>
+<?php
+     session_start();
+    $usuarioLogado = isset($_SESSION['id']);
+    $usuarioLogin = isset($_SESSION['login']);
+    $loginSessao = $usuarioLogin ? $_SESSION['login'] : null;
+
+    require("tccbdconnecta.php");
+    $categoria = isset($_GET['categoria']) ? $_GET['categoria'] : '';
+    $nome = isset($_GET['nome']) ? $_GET['nome'] : '';
+    if (!$conn) {
+        die("Erro na conexão com o banco de dados: " . mysqli_error($conn));
+    }
+
+    $sql = "SELECT idUsuario, nome, categoria, autor_diretor, classificacao_num, classificacao_text, ano_lancamento, genero, onde_assistir, sinopse, fotoPerfil FROM tcc_obra WHERE categoria = ? AND nome = ?";
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, "ss", $categoria, $nome);
+    mysqli_stmt_execute($stmt);
+    $resultado = mysqli_stmt_get_result($stmt);
+
+    if (!$resultado) {
+        die("Erro na consulta SQL: " . mysqli_error($conn));
+    }
+
+    if (mysqli_num_rows($resultado) > 0) {
+        $dados = mysqli_fetch_assoc($resultado);
+        $fotoPerfil = !empty($dados['fotoPerfil']) ? $dados['fotoPerfil'] : 'imagens/imagem-obras.png';
+        $idUsuario = $dados['idUsuario'];
+        $nome = $dados['nome'];
+        $categoria = $dados['categoria'];
+        $autor_diretor = $dados['autor_diretor'];
+        $classificacao_num = $dados['classificacao_num'];
+        $classificacao_text = $dados['classificacao_text'];
+        $ano_lancamento = $dados['ano_lancamento'];
+        $genero = $dados['genero'];
+        $onde_assistir = $dados['onde_assistir'];
+        $sinopse = $dados['sinopse'];
+
+    } else {
+        die("Usuário não encontrado.");
+    }
+
+
+    $sql2 = "SELECT id, login, fotoPerfil FROM tcc_pessoa WHERE id = ?";
+    $stmt2 = mysqli_prepare($conn, $sql2);
+    mysqli_stmt_bind_param($stmt2, "i", $idUsuario);
+    mysqli_stmt_execute($stmt2);
+    $resultado2 = mysqli_stmt_get_result($stmt2);
+
+    if (!$resultado2) {
+        die("Erro na consulta SQL: " . mysqli_error($conn));
+    }
+
+    if (mysqli_num_rows($resultado2) > 0) {
+        $dados2 = mysqli_fetch_assoc($resultado2);
+        $fotoLogin = !empty($dados2['fotoPerfil']) ? $dados2['fotoPerfil'] : 'imagens/imagem-obras.png';
+        $id = $dados2['id'];
+        $login = $dados2['login'];
+
+    } else {
+        die("Usuário não encontrado.");
+    }
+
+?>
+    <header>
+
+        <nav class="nav-bar-principal">
+            <div class="nav-list-icone-menu">
+                <ul>
+                    <li class="nav-item">
+                        <a href="#" id="menu-toggle" class="nav-link">
+                            <img src="imagens/menu-bege.png" alt="menu" />
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div id="menu" class="nav-list-menu">
+                <ul>
+                    <li class="nav-item"><a href="index.php" class="nav-link-casa"><img src="imagens/casa-bege.png" alt="casa">      Página Inicial</a></li>
+                    <li class="nav-item"><a href="quemSomos.php" class="nav-link"><img src="imagens/quem-somos-bege.png" alt="quem-somos">  Quem Somos</a></li>
+                    <li class="nav-item"><a href="pesquisa.php" class="nav-link"><img src="imagens/pesquisa-bege.png" alt="pesquisa">  Pesquisar</a></li>
+                    <li class="nav-item"><a href="favorito.php" class="nav-link"><img src="imagens/coracao-bege.png" alt="Favoritos">  Favoritos</a></li>
+                    <li class="nav-item"><a href="cadObra01.php" class="nav-link"><img src="imagens/mais-bege.png" alt="mais">  Cadastrar novas obras</a></li>
+                    <li class="nav-item"><a href="configuracoes.php" class="nav-link"><img src="imagens/configuracoes-bege.png" alt="configuracao">  Configurações</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <nav class="nav-bar-logo">
+        <div class="nav-list-logo">
+                <ul>
+                    <!-- Ícone 6: text-narraverso -->
+                    <li class="nav-item">
+                        <a  class="nav-link-text-narraverso">
+                            <img src="imagens/text-narraverso.png" alt="text-narraverso"/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            </nav>
+
+
+            <nav class="nav-bar-sino">
+            <div class="nav-list-sino">
+                <ul>
+                    <!-- Ícone 7: Sino -->
+                    <li class="nav-item">
+                        <a href="#" class="nav-link-sino">
+                            <img src="imagens/sino-bege.png" alt="Sino"/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            </nav>
+
+            <nav class="nav-bar-login">
+            <div class="nav-list-login">
+                <ul>
+                    <!-- Ícone 7: Contato -->
+                    <li class="nav-item">
+                        <a href="#" class="nav-link-login">
+                            <img src="imagens/usuario-bege.png" alt="Usuario"/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            </nav>
+
+
+    
+
+        
+        <div class="cadastrar-container">
+
+            <div class="perfil-container">
+                <div class="perfil-foto">
+                    
+                    <div class="nav-titulo-obra">
+                        <a class="coracao-favorito"><?php echo $nome ?><img src="imagens/favorito-bege.png" alt="Usuário"></a>
+                    </div>
+                    <label class="fotoPerfil" tabindex="0">
+                        <span class="fotoPerfil-image">
+                            <img id="preview" src="<?php echo empty($fotoPerfil) ? 'imagens/login-bege.png' : $fotoPerfil; ?>" alt="Foto de Perfil">
+                        </span>
+                        <input type="file" name="fotoPerfil-name" value="<?php echo $fotoPerfil; ?>" accept="image/*" class="fotoPerfil-input" onchange="previewImage(event)" disabled /> 
+                    </label>
+                    <div class="nav-list-usuario">
+                        <?php
+                            $linkUsuario = $usuarioLogado
+                                ? 'perfil_usuario.php?login=' . urlencode($login)
+                                :'#';
+
+                                $onclick = $usuarioLogado
+                                ? ''
+                                : 'onclick="loginShow()"';
+                        ?>
+                        <a class="login-usuario" href="<?php echo $linkUsuario; ?>" <?php echo $onclick; ?>>
+                            <img src="<?php echo empty($fotoLogin) ? 'imagens/usuario-bege.png' : $fotoLogin; ?>" alt="Usuário"><?php echo $login; ?></a>
+                    </div>
+                </div>
+            </div>
+            
+
+                    <div class="nav-list-biografia">
+                        <h2 class="informacoes-obra">Biografia:</h2>
+
+                    <div class="nav-list-informacoes">
+                         <div class="nav-list-dados">
+                            <a href="#" class="texto-logar-cad"><strong>Categoria:</strong> <?php echo $categoria; ?></a>
+                            <a href="#" class="texto-logar-cad"><strong>Autor/Diretor:</strong> <?php echo $autor_diretor; ?></a>
+                            <a href="#" class="texto-logar-cad"><strong>Classificação etária:</strong> <?php echo $classificacao_num; ?>. <?php echo $classificacao_text; ?></a>
+                            <a href="#" class="texto-logar-cad"><strong>Sinopse:</strong> <?php echo $sinopse; ?></a>
+                        </div>
+                        <div class="nav-list-dados-two">
+                            <a href="#" class="texto-logar-cad"><strong>Ano de lançamento:</strong> <?php echo $ano_lancamento; ?></a>
+                            <a href="#" class="texto-logar-cad" ><strong>Gênero:</strong> <?php echo $genero; ?></a>
+                            <a href="#" class="texto-logar-cad"><strong>Onde encontrar:</strong> <?php echo $onde_assistir; ?></a>
+                        </div>
+                    </div>   
+                        
+
+                    <form method="POST">
+                        <div class="container-comentario">
+                            <textarea type="text" class="comentario" id="comentario" name="comentario" placeholder="Comente o que você achou da obra..."></textarea>
+                            <div class="comentario-imagem">
+                                <img src="imagens/enviar-mensagem.png" alt="Ícone enviar">
+                            </div>
+                        </div>
+                    </form>
+                     <div class="container-principal-chat">
+                       <ul class="nav-list-chat">
+                           <li class="container-chat">
+                            <div class="container-organizador">
+                                <div class="container-usuario-chat">
+                                    <span class="usuario-chat" href="<?php echo $linkUsuario; ?>" <?php echo $onclick; ?>>
+                                    <img src="<?php echo empty($fotoLogin) ? 'imagens/usuario-bege.png' : $fotoLogin; ?>" alt="Usuário"><?php echo $login; ?>
+                                </span>
+                                <p class="tempo-chat">10 dias</p>
+                                </div>
+                               
+                               <div class="container-likes">
+                                   <a class="like-chat" href="#">
+                                        <img src="imagens/like.png" alt="Like">
+                                    </a>
+                                    <a class="deslike-chat" href="#">
+                                        <img src="imagens/deslike.png" alt="deslike">
+                                    </a>
+                                    <a class="responder-chat" href="#">
+                                        <label class="responder">Reponder</label>
+                                    </a>
+                               </div>
+                            </div>
+                                
+                                
+                                <p class="comentario-usuario">“Dom Casmurro” é uma obra-prima que explora com maestria temas como memória, ciúme e dúvida. A narrativa em primeira pessoa de Bentinho nos coloca dentro de sua mente conflituosa, onde o passado é revivido sob uma lente marcada pela insegurança. Machado de Assis usa uma linguagem simples, porém carregada de ironia e profundidade psicológica, convidando o leitor a questionar a confiabilidade do narrador e a própria verdade dos fatos. É uma leitura que provoca reflexões sobre a natureza humana e as ambiguidades das relações afetivas.</p>
+                           </li>
+                       </ul>
+                     </div>
+                   
+
+                
+            </div>
+
+        </div>
+
+
+
+      
+        
+
+        <div id="trilho"></div> <!--Para funcionar modo escuro-->
+
+                    
+    </header>
+
+
+   
+</body>
+</html>

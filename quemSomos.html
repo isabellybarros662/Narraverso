@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Quem Somos - Narraverso</title>
+    <link rel="stylesheet" href="css/estilomenu.css">
+    <script src="menu.js"></script>
+</head>
+<body>
+    <?php
+        session_start();
+        $usuarioLogado = isset($_SESSION['id']);
+    ?>
+   <header>
+
+        <nav class="nav-bar-principal">
+            <div class="nav-list-icone-menu">
+                <ul>
+                    <li class="nav-item">
+                        <a href="#" id="menu-toggle" class="nav-link">
+                            <img src="imagens/menu-bege.png" alt="menu" />
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div id="menu" class="nav-list-menu">
+                <ul>
+                    <li class="nav-item"><a href="index.php" class="nav-link-casa"><img src="imagens/casa-bege.png" alt="casa">      Página Inicial</a></li>
+                    <li class="nav-item"><a href="quemSomos.html" class="nav-link"><img src="imagens/quem-somos-verde.png" alt="quem-somos">  Quem Somos</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link"><img src="imagens/pesquisa-bege.png" alt="pesquisa">  Pesquisar</a></li>
+                    <li class="nav-item"><a href="favorito.php" class="nav-link"><img src="imagens/coracao-bege.png" alt="Favoritos">  Favoritos</a></li>
+                    <li class="nav-item"><a href="cadObra01.html" class="nav-link"><img src="imagens/mais-bege.png" alt="mais">  Cadastrar novas obras</a></li>
+                    <li class="nav-item"><a href="configuracoes.html" class="nav-link"><img src="imagens/configuracoes-bege.png" alt="configuracao">  Configurações</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <nav class="nav-bar-logo">
+        <div class="nav-list-logo">
+                <ul>
+                    <!-- Ícone 6: text-narraverso -->
+                    <li class="nav-item">
+                        <a  class="nav-link-text-narraverso">
+                            <img src="imagens/text-narraverso.png" alt="text-narraverso"/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            </nav>
+
+
+            <nav class="nav-bar-sino">
+            <div class="nav-list-sino">
+                <ul>
+                    <!-- Ícone 7: Sino -->
+                    <li class="nav-item">
+                        <a href="#" class="nav-link-sino">
+                            <img src="imagens/sino-bege.png" alt="Sino"/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            </nav>
+
+            <nav class="nav-bar-login">
+            <div class="nav-list-login">
+                <ul>
+                    <!-- Ícone 7: Contato -->
+                    <li class="nav-item">
+                        <a href="#" class="nav-link-login" onclick="loginShow()">
+                            <img src="imagens/usuario-bege.png" alt="Usuario"/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            </nav>
+
+
+
+        <!-- parte do login e cadastrar pessoa -->
+        <div class="logar-cad">
+            <h3 class="texto-logar-cad" style="margin-top: 20px;">Você não possui uma <br> conta conectada!</h3>
+        <div class="login-button">
+            <button onclick="logar()">Entrar</button>
+            <button onclick="cadastrar()">Cadastrar</button>
+            <br>
+             <a class="aVoltar" href="#" onclick="fecharLogarCad()">Voltar</a>
+            </div>
+        </div>
+
+        
+        <div class="logar">
+            <h3 class="texto-logar-cad">Login</h3>
+            <div class="google-button">
+                <button type="button"><img src="imagens/icon-google.jpeg">Logar com o Google</button>
+            </div>
+            <form name="login" action="login02.php" method="POST">  
+
+            <h5 class="texto-logar-cad" style="margin-top: 20px;">Email: <br></h5> 
+            <input type="text" name="email" id="email" value="" maxlength="150">
+            <h5 class="texto-logar-cad">Senha: <br></h5> 
+            <input type="password" name="senhaUsu" id="senhaUsu" value="" maxlength="50">
+            <br>
+            <a class="aVoltar" href="#" onclick="fecharLogin()">Voltar</a>
+            <br>
+            <div class="login-button">
+            <input type="submit" name="btEnviar" value="Enviar Dados">
+            <br>
+        </form>
+        <!-- Botão separado do form para evitar envio -->
+    <button type="button" onclick="esqueciSenha()">Esqueci a senha</button>
+    </div>
+    </div>
+
+    <div class="esqueciSenha" style="display: none;">
+    <h3 class="texto-logar-cad">Recuperar senha</h3>
+        <form name="login" action="esqueciSenha02.php" method="POST"> 
+
+            <h5 class="texto-logar-cad" style="margin-top: 20px;">Email: <br></h5> 
+            <input type="text" name="email" id="emailSenha" value="" maxlength="150">
+            <br>
+            <a class="aVoltar" href="#" onclick="voltarLogin()">Voltar</a>
+            <br>
+            <div class="login-button">
+            <input type="submit" name="btEnviar" value="Enviar">
+            <br>
+        </form>
+    </div>
+
+    </header>
+
+    <div class="conteudo-quem-somos">
+            <h1>Quem Somos</h1>
+            <p>No <strong>Narraverso</strong>, acreditamos no poder das histórias de transformar realidades, conectar pessoas e inspirar emoções. Somos um espaço dedicado à paixão por narrativas – sejam elas em forma de livros, filmes ou séries.</p>
+            <p>Nossa missão é criar um ambiente onde leitores, cinéfilos e aficionados por entretenimento possam se reunir, compartilhar suas opiniões e descobrir novas obras. Acreditamos que cada história tem o poder de mudar perspectivas, e estamos aqui para ajudar você a encontrar aquelas que realmente fazem a diferença.</p>
+            <p>Por meio de resenhas, recomendações e um banco de dados de obras cuidadosamente selecionadas, queremos proporcionar aos nossos usuários uma plataforma rica, interativa e envolvente. No <strong>Narraverso</strong>, você é parte fundamental dessa jornada literária e cinematográfica!</p>
+            <p>Junte-se a nós e venha explorar o <strong>Narraverso</strong> – onde as histórias nunca acabam, apenas começam.</p>
+
+            <br>
+            <br>
+            <br>
+            <div class="voltar-quem-somos">
+            <button type="submit" onclick="voltar()">Voltar</button>
+            </div>
+        </div>
+
+</body>
+</html>

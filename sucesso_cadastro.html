@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro Realizado</title>
+    <style>
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .modal {
+            background: #F9F7EF;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 80%;
+        }
+        .modal h2 {
+            color: #818D14;
+            margin-bottom: 10px;
+        }
+        .modal p {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .modal button {
+            background: #818D14;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .modal button:hover {
+            background: #4CAF50;
+        }
+    </style>
+</head>
+<body>
+    <div class="modal-overlay">
+        <div class="modal">
+            <h2>Sucesso!</h2>
+            <p>Cadastro enviado com sucesso! <br> Você será redirecionado para o menu.</p>
+            <button onclick="redirectToIndex()">OK</button>
+        </div>
+    </div>
+    <script>
+        function redirectToIndex() {
+            window.location.href = 'index.php';
+        }
+    </script>
+</body>
+</html>

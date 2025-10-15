@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sair da conta</title>
+    <style>
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .modal {
+            background: #F9F7EF;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 80%;
+        }
+        .modal h2 {
+            color: #910910;
+            margin-bottom: 10px;
+        }
+        .modal p {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .modal button {
+            background: #910910;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 0.5rem;
+        }
+        .modal button:hover {
+            background: #FF1744;
+        }
+    </style>
+</head>
+<body>
+    <div class="modal-overlay">
+        <div class="modal">
+            <h2>Atenção!</h2>
+            <p>Você tem certeza que<br> deseja deletar comentário?</p>
+            <button onclick="Deletar()">Deletar</button>
+            <button onclick="voltar()">Voltar</button>
+        </div>
+    </div>
+    <script>
+        function redirectToIndex() {
+            window.location.href = 'index.php';
+        }
+    </script>
+</body>
+</html>
